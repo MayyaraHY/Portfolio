@@ -18,8 +18,14 @@ jobs:
         with:
           node-version: '18'
 
+      - name: Print Node & npm versions
+        run: |
+          node -v
+          npm -v
+
       - name: Install dependencies
-        run: npm ci
+        # try npm ci (faster/clean) and fall back to npm install if no lockfile exists
+        run: npm ci || npm install
 
       - name: Build
         run: npm run build
