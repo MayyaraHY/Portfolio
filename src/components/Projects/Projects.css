@@ -21,6 +21,7 @@
   padding: 30px;
   border-radius: 0;
   transition: all 0.3s ease;
+  position: relative; /* allow absolute positioning of top-right button */
 }
 
 /* Only apply hover effects to non-expanded cards */
@@ -52,6 +53,36 @@
   background: rgba(17,24,39,0.95);
   padding: 36px;
   overflow: auto;
+  /* keep space from browser top/bottom */
+  max-height: calc(100vh - 120px); /* leaves 60px space top and bottom */
+}
+
+/* Custom scrollbar for expanded project card to match template */
+.project-card.is-expanded {
+  /* Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: var(--pixel-accent) var(--pixel-border);
+}
+
+/* WebKit browsers */
+.project-card.is-expanded::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+.project-card.is-expanded::-webkit-scrollbar-track {
+  background: var(--pixel-border);
+  border-radius: 8px;
+}
+
+.project-card.is-expanded::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--pixel-accent), var(--pixel-purple));
+  border-radius: 8px;
+  border: 3px solid rgba(17,24,39,0.95); /* create an inset look */
+}
+
+.project-card.is-expanded::-webkit-scrollbar-thumb:hover {
+  filter: brightness(0.95);
 }
 
 /* Remove hover effects specifically from expanded cards */
@@ -122,6 +153,31 @@
   line-height: 1.6;
 }
 
+/* clamp to 3 lines for non-expanded descriptions */
+.project-description.clamped {
+  display: -webkit-box;
+  /* Standard property for future compatibility */
+  line-clamp: 3;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.project-description.expanded {
+  display: block;
+}
+
+.more-link {
+  background: transparent;
+  border: none;
+  color: var(--pixel-accent);
+  cursor: pointer;
+  font-family: 'Share Tech Mono', monospace;
+  margin-top: -8px;
+  margin-bottom: 12px;
+  display: inline-block;
+}
+
 .project-tech {
   display: flex;
   flex-wrap: wrap;
@@ -188,6 +244,45 @@
   border: 1px dashed rgba(255,255,255,0.06);
 }
 
+/* Top-right expand icon */
+.expand-top {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.expand-top img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.45));
+  transition: transform 180ms ease, filter 180ms ease;
+}
+
+.expand-top {
+  background: rgba(255,255,255,0.02);
+  border: 1px solid var(--pixel-border);
+  border-radius: 6px;
+}
+
+.expand-top:focus {
+  outline: 2px solid var(--pixel-accent);
+  outline-offset: 2px;
+}
+
+.expand-top:hover img {
+  transform: scale(1.06);
+}
+
 /* Full-page overlay used to blur/dim background */
 .projects-overlay {
   position: fixed;
@@ -198,6 +293,44 @@
   background: rgba(0,0,0,0.36);
   backdrop-filter: blur(6px) saturate(1.02);
   z-index: 1010; /* above header but below expanded card */
+}
+
+/* Video modal */
+.video-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1110;
+  background: rgba(17,24,39,0.98);
+  padding: 14px;
+  border-radius: 10px;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+  max-width: min(92vw, 1100px);
+  width: min(92vw, 1100px);
+  max-height: calc(100vh - 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.video-player {
+  width: 100%;
+  height: auto;
+  max-height: calc(100vh - 180px);
+  border-radius: 6px;
+  background: black;
+}
+
+.video-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: transparent;
+  border: none;
+  color: var(--pixel-light);
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
 /* Controls */
