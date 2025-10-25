@@ -1,0 +1,133 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Share+Tech+Mono&display=swap');
+
+:root {
+  --pixel-purple: #8B5CF6;
+  --pixel-purple-dark: #7C3AED;
+  --pixel-blue: #3B82F6;
+  --pixel-blue-dark: #2563EB;
+  --pixel-dark: #1F2937;
+  --pixel-darker: #111827;
+  --pixel-gray: #6B7280;
+  --pixel-light: #F9FAFB;
+  --pixel-accent: #A78BFA;
+  --pixel-border: #374151;
+  --pixel-grid: rgba(139, 92, 246, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(135deg, var(--pixel-darker) 0%, var(--pixel-dark) 100%);
+  color: var(--pixel-light);
+  font-family: 'Share Tech Mono', monospace;
+  line-height: 1.6;
+  overflow-x: hidden;
+  image-rendering: pixelated;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Pixel button styles */
+.pixel-btn {
+  font-family: 'Share Tech Mono', monospace;
+  padding: 12px 24px;
+  border: 2px solid var(--pixel-purple);
+  background: transparent;
+  color: var(--pixel-light);
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  font-size: 0.9rem;
+  letter-spacing: 1px;
+}
+
+.pixel-btn.primary {
+  background: var(--pixel-purple);
+  color: var(--pixel-light);
+}
+
+.pixel-btn.secondary {
+  background: transparent;
+  color: var(--pixel-purple);
+}
+
+.pixel-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.4);
+}
+
+.pixel-btn:active {
+  transform: translateY(0);
+}
+
+/* Section titles */
+.pixel-section-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 3rem;
+  color: var(--pixel-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Grid background */
+.pixel-grid-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(var(--pixel-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--pixel-grid) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+/* Pixel corners */
+.pixel-corners .corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--pixel-purple);
+  z-index: 10;
+}
+
+.corner.top-left {
+  top: 20px;
+  left: 20px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.corner.top-right {
+  top: 20px;
+  right: 20px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner.bottom-left {
+  bottom: 20px;
+  left: 20px;
+  border-right: none;
+  border-top: none;
+}
+
+.corner.bottom-right {
+  bottom: 20px;
+  right: 20px;
+  border-left: none;
+  border-top: none;
+}

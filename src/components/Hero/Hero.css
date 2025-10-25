@@ -1,0 +1,139 @@
+.pixel-hero {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--pixel-darker) 0%, var(--pixel-dark) 100%);
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.hero-content {
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.pixel-avatar {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.avatar-frame {
+  width: 190px;
+  height: 190px;
+  /* removed background so frame stays transparent */
+  /* use smooth rendering for photos */
+  image-rendering: auto;
+  position: relative;
+  border: 3px solid var(--pixel-light);
+  overflow: visible; /* allow image to pop out */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar-frame { position: relative; }
+
+.avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  position: relative;
+  transform: scale(1) translateY(0);
+  transition: transform 300ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform;
+  z-index: 1;
+  filter: contrast(1.03) saturate(1.02);
+}
+
+/* Hover/focus only scales the single image */
+.avatar-frame:hover .avatar-img,
+.avatar-frame:focus .avatar-img {
+  transform: scale(1.18) translateY(-12px);
+}
+
+.pixel-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.pixel-eyes {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 30px;
+}
+
+.eye {
+  width: 16px;
+  height: 16px;
+  background: var(--pixel-darker);
+  border: 2px solid var(--pixel-light);
+}
+
+.pixel-mouth {
+  width: 40px;
+  height: 8px;
+  background: var(--pixel-darker);
+  margin: 40px auto 0;
+  border: 2px solid var(--pixel-light);
+}
+
+.pixel-text {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.pixel-gradient {
+  background: linear-gradient(45deg, var(--pixel-purple), var(--pixel-blue));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pixel-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--pixel-gray);
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+}
+
+.pixel-description {
+  font-family: 'Share Tech Mono', monospace;
+  text-align: center;
+  color: var(--pixel-gray);
+  margin-bottom: 2.5rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.pixel-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  .pixel-text {
+    font-size: 1.5rem;
+  }
+  
+  .pixel-subtitle {
+    font-size: 1rem;
+  }
+}

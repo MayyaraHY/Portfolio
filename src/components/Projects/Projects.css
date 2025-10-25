@@ -1,0 +1,125 @@
+.pixel-projects {
+  padding: 80px 0;
+  position: relative;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 30px;
+}
+
+.project-card {
+  background: rgba(17, 24, 39, 0.7);
+  border: 2px solid;
+  padding: 30px;
+  border-radius: 0;
+  transition: all 0.3s ease;
+}
+
+.project-card.purple {
+  border-color: var(--pixel-purple);
+}
+
+.project-card.blue {
+  border-color: var(--pixel-blue);
+}
+
+.project-card.accent {
+  border-color: var(--pixel-accent);
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
+}
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.project-header h3 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.9rem;
+  color: var(--pixel-light);
+}
+
+.status {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.7rem;
+  padding: 4px 8px;
+  border: 1px solid;
+}
+
+.status.live {
+  color: var(--pixel-accent);
+  border-color: var(--pixel-accent);
+}
+
+.status.wip {
+  color: var(--pixel-blue);
+  border-color: var(--pixel-blue);
+}
+
+.status.dev {
+  color: var(--pixel-purple);
+  border-color: var(--pixel-purple);
+}
+
+.project-description {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--pixel-gray);
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.project-tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.tech-tag {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--pixel-purple);
+  padding: 4px 12px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 0.8rem;
+  border: 1px solid var(--pixel-purple);
+}
+
+.project-preview {
+  margin-bottom: 20px;
+}
+
+.pixel-art-preview {
+  height: 120px;
+  background: rgba(31, 41, 55, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--pixel-border);
+}
+
+.pixel-grid-small {
+  width: 80%;
+  height: 80%;
+  background-image: 
+    linear-gradient(rgba(139, 92, 246, 0.2) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.2) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.pixel-btn.small {
+  padding: 8px 16px;
+  font-size: 0.8rem;
+}

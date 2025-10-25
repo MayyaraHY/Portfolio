@@ -1,0 +1,225 @@
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--pixel-darker) 0%, var(--pixel-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  transition: opacity 0.5s ease;
+}
+
+.loading-screen.fade-out {
+  opacity: 0;
+}
+
+.loading-content {
+  text-align: center;
+  max-width: 500px;
+  padding: 40px;
+}
+
+.avatar-container {
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.avatar {
+  position: relative;
+  transition: transform 0.3s ease;
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+/* Image avatars from /public/icons */
+.avatar-container .avatar-img {
+  width: 130px;
+  height: 130px;
+  object-fit: contain;
+  display: inline-block;
+  transition: transform 220ms ease;
+}
+
+.avatar-container .avatar-img:hover {
+  transform: scale(1.08);
+}
+
+/* Avatar 1 Styles */
+.pixel-head {
+  width: 80px;
+  height: 80px;
+  background: var(--pixel-purple);
+  border: 3px solid var(--pixel-light);
+  margin: 0 auto 10px;
+  position: relative;
+}
+
+.pixel-face {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.eyes {
+  display: flex;
+  justify-content: space-around;
+  padding-top: 20px;
+}
+
+.eye {
+  width: 12px;
+  height: 12px;
+  background: var(--pixel-darker);
+  border: 2px solid var(--pixel-light);
+}
+
+.mouth {
+  width: 30px;
+  height: 6px;
+  background: var(--pixel-darker);
+  margin: 25px auto 0;
+  border: 2px solid var(--pixel-light);
+}
+
+.mouth.smile {
+  border-radius: 0 0 10px 10px;
+  height: 8px;
+}
+
+.mouth.neutral {
+  height: 4px;
+}
+
+.pixel-body {
+  width: 60px;
+  height: 40px;
+  background: var(--pixel-blue);
+  border: 3px solid var(--pixel-light);
+  margin: 0 auto;
+}
+
+/* Avatar 2 Styles */
+.pixel-head.alt {
+  background: var(--pixel-blue);
+}
+
+.pixel-body.alt {
+  background: var(--pixel-purple);
+}
+
+.pixel-loading-title {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 1.2rem;
+  color: var(--pixel-light);
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.loading-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--pixel-gray);
+  margin-bottom: 30px;
+  font-size: 0.9rem;
+}
+
+.progress-container {
+  margin-bottom: 30px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: rgba(31, 41, 55, 0.8);
+  border: 2px solid var(--pixel-border);
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--pixel-purple), var(--pixel-blue));
+  transition: width 0.3s ease;
+  position: relative;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--pixel-light);
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.progress-text {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--pixel-light);
+  font-size: 0.9rem;
+}
+
+.loading-stats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 30px;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.stat-label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.6rem;
+  color: var(--pixel-gray);
+}
+
+.stat-value {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--pixel-accent);
+  font-size: 0.8rem;
+}
+
+/* Customization classes for different themes */
+.loading-screen.purple-theme .pixel-head {
+  background: var(--pixel-purple);
+}
+
+.loading-screen.blue-theme .pixel-head {
+  background: var(--pixel-blue);
+}
+
+.loading-screen.accent-theme .pixel-head {
+  background: var(--pixel-accent);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .pixel-loading-title {
+    font-size: 1rem;
+  }
+  
+  .loading-stats {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .avatar-container {
+    margin-bottom: 30px;
+  }
+}

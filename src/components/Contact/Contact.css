@@ -1,0 +1,95 @@
+.pixel-contact {
+  padding: 80px 0;
+  background: rgba(31, 41, 55, 0.3);
+  position: relative;
+}
+
+.contact-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  padding: 20px;
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid var(--pixel-border);
+}
+
+.contact-icon {
+  font-size: 1.5rem;
+  flex-shrink: 0;
+}
+
+.contact-item h3 {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.8rem;
+  color: var(--pixel-purple);
+  margin-bottom: 8px;
+}
+
+.contact-item p {
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--pixel-gray);
+  margin: 0;
+}
+
+.pixel-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  font-family: 'Press Start 2P', cursive;
+  font-size: 0.7rem;
+  color: var(--pixel-light);
+  margin-bottom: 10px;
+}
+
+.pixel-input, .pixel-textarea {
+  background: rgba(17, 24, 39, 0.7);
+  border: 1px solid var(--pixel-border);
+  padding: 12px 16px;
+  color: var(--pixel-light);
+  font-family: 'Share Tech Mono', monospace;
+  transition: all 0.3s ease;
+}
+
+.pixel-input:focus, .pixel-textarea:focus {
+  outline: none;
+  border-color: var(--pixel-purple);
+  box-shadow: 0 0 0 2px rgba(139, 92, 246, 0.2);
+}
+
+.pixel-textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.pixel-btn.full-width {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .contact-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
