@@ -119,11 +119,6 @@ const Projects = () => {
                 ))}
               </div>
               
-              <div className="project-preview">
-                <div className="pixel-art-preview">
-                  <div className="pixel-grid-small"></div>
-                </div>
-              </div>
               
               <div className="project-actions">
                 <button className="pixel-btn small">VIEW_CODE</button>

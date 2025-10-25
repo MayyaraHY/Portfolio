@@ -50,7 +50,12 @@
   z-index: 1100; /* above header and overlay */
   box-shadow: 0 48px 100px rgba(2,6,23,0.85);
   border-radius: 10px;
-  background: rgba(17,24,39,0.95);
+  /* use a fully opaque background so overlay blur doesn't show through */
+  background: var(--pixel-darker);
+  /* ensure the expanded card creates its own stacking context and is not affected by backdrop-filter */
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  isolation: isolate;
   padding: 36px;
   overflow: auto;
   /* keep space from browser top/bottom */
@@ -302,7 +307,11 @@
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1110;
-  background: rgba(17,24,39,0.98);
+  /* make video modal fully opaque to avoid overlay blur showing through */
+  background: var(--pixel-darker);
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+  isolation: isolate;
   padding: 14px;
   border-radius: 10px;
   box-shadow: 0 30px 80px rgba(0,0,0,0.7);
