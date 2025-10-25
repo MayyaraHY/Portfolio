@@ -9,12 +9,63 @@
   gap: 30px;
 }
 
+/* Expanded state: larger cards and preview area */
+.pixel-projects.expanded .projects-grid {
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 40px;
+}
+
 .project-card {
   background: rgba(17, 24, 39, 0.7);
   border: 2px solid;
   padding: 30px;
   border-radius: 0;
   transition: all 0.3s ease;
+}
+
+/* Only apply hover effects to non-expanded cards */
+.project-card:not(.is-expanded):hover {
+  /* Intentionally kept static on hover per user request */
+  transform: none;
+  box-shadow: none;
+}
+
+/* Expanded/float state for a specific project */
+.project-card.is-expanded,
+.project-card.is-expanded .project-preview,
+.project-card.is-expanded .pixel-art-preview {
+  transition: all 320ms cubic-bezier(.2,.8,.2,1);
+  will-change: transform, width, height, opacity;
+}
+
+/* Center the expanded card as a modal-like element */
+.project-card.is-expanded {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(1);
+  width: min(92vw, 1000px);
+  max-width: 1000px;
+  z-index: 1100; /* above header and overlay */
+  box-shadow: 0 48px 100px rgba(2,6,23,0.85);
+  border-radius: 10px;
+  background: rgba(17,24,39,0.95);
+  padding: 36px;
+  overflow: auto;
+}
+
+/* Remove hover effects specifically from expanded cards */
+.project-card.is-expanded:hover {
+  transform: translate(-50%, -50%) scale(1) !important;
+  box-shadow: 0 48px 100px rgba(2,6,23,0.85) !important;
+}
+
+.project-card.is-expanded .pixel-art-preview {
+  height: 340px;
+}
+
+.pixel-projects.expanded .project-card {
+  padding: 40px;
 }
 
 .project-card.purple {
@@ -27,11 +78,6 @@
 
 .project-card.accent {
   border-color: var(--pixel-accent);
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2);
 }
 
 .project-header {
@@ -105,6 +151,10 @@
   border: 1px solid var(--pixel-border);
 }
 
+.pixel-projects.expanded .pixel-art-preview {
+  height: 220px;
+}
+
 .pixel-grid-small {
   width: 80%;
   height: 80%;
@@ -122,4 +172,42 @@
 .pixel-btn.small {
   padding: 8px 16px;
   font-size: 0.8rem;
+}
+
+.pixel-btn.toggle {
+  padding: 8px 14px;
+  font-size: 0.75rem;
+  background: transparent;
+  border: 1px solid var(--pixel-border);
+  color: var(--pixel-light);
+  cursor: pointer;
+}
+
+.project-actions .toggle-expand {
+  background: transparent;
+  border: 1px dashed rgba(255,255,255,0.06);
+}
+
+/* Full-page overlay used to blur/dim background */
+.projects-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0,0,0,0.36);
+  backdrop-filter: blur(6px) saturate(1.02);
+  z-index: 1010; /* above header but below expanded card */
+}
+
+/* Controls */
+.projects-controls {
+  display: flex;
+  justify-content: flex-end;
+  margin: 16px 0 22px;
+}
+
+.pixel-btn.toggle:focus {
+  outline: 2px solid var(--pixel-accent);
+  outline-offset: 2px;
 }
