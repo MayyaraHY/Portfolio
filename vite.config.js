@@ -5,4 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
     plugins: [react()],
     base: "/Portfolio", // serve from GitHub Pages at /Portfolio/
+    publicDir: 'public',
 })
