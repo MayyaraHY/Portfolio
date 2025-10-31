@@ -8,7 +8,7 @@ on:
 
 # Ensure the workflow token has the permissions required to publish Pages
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
