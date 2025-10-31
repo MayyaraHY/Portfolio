@@ -6,7 +6,6 @@ on:
       - main
       - my-portfolio
 
-# Ensure the workflow token has the permissions required to publish Pages
 permissions:
   contents: write
   pages: write
@@ -16,8 +15,13 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
+      - name: Print current branch
+        run: echo "Current branch is ${GITHUB_REF#refs/heads/}"
+
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: my-portfolio  # Always deploy from this branch
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -30,7 +34,6 @@ jobs:
           npm -v
 
       - name: Install dependencies
-        # try npm ci (faster/clean) and fall back to npm install if no lockfile exists
         run: npm ci || npm install
 
       - name: Build
@@ -56,4 +59,3 @@ jobs:
           user_name: github-actions[bot]
           user_email: 41898282+github-actions[bot]@users.noreply.github.com
           allow_empty_commit: true
-          # (note) the action will push build artifacts to the `gh-pages` branch
