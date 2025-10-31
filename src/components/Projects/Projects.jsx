@@ -29,6 +29,8 @@ const Projects = () => {
   const [hasOverflow, setHasOverflow] = useState(() => projects.map(() => false));
   const [videoIndex, setVideoIndex] = useState(null);
 
+  const base = import.meta.env.BASE_URL || '/';
+
   useEffect(() => {
     // measure each description to see if it overflows 3 lines (clamped)
     const measure = () => {
@@ -67,7 +69,7 @@ const Projects = () => {
             />
             <div className="video-modal" role="dialog" aria-modal="true">
               <video
-                src={'/icons/pi%20video.mp4'}
+                src={`${base}icons/pi%20video.mp4`}
                 controls
                 autoPlay
                 className="video-player"
@@ -91,7 +93,7 @@ const Projects = () => {
                 aria-label={expandedIndex === index ? 'Close project' : 'Expand project'}
               >
                 <img
-                  src={expandedIndex === index ? '/icons/close.png' : '/icons/maximize.png'}
+                  src={`${base}${expandedIndex === index ? 'icons/close.png' : 'icons/maximize.png'}`}
                   alt={expandedIndex === index ? 'close' : 'expand'}
                 />
               </button>

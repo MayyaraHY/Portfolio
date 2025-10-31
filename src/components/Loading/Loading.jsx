@@ -6,11 +6,13 @@ const Loading = ({ onLoadingComplete }) => {
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
 
-  // Use three image avatars from public/icons
+  // Use three image avatars from public/icons (public is served at site root, so use /icons/...)
+  // Use import.meta.env.BASE_URL so images resolve correctly when the app is served from a sub-path (e.g. GitHub Pages /Portfolio)
+  const base = import.meta.env.BASE_URL || '/';
   const avatars = [
-    <img src="/icons/yippie.png" alt="yippie" className="avatar-img" key="yippie" />,
-    <img src="/icons/peacesign.png" alt="peacesign" className="avatar-img" key="peacesign" />,
-    <img src="/icons/kissyface.png" alt="kissyface" className="avatar-img" key="kissyface" />
+    <img src={`${base}icons/yippie.png`} alt="yippie" className="avatar-img" key="yippie" />,
+    <img src={`${base}icons/peacesign.png`} alt="peacesign" className="avatar-img" key="peacesign" />,
+    <img src={`${base}icons/kissyface.png`} alt="kissyface" className="avatar-img" key="kissyface" />
   ];
 
   useEffect(() => {

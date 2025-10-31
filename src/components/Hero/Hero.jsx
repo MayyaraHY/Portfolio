@@ -2,6 +2,7 @@ import React from 'react';
 import './Hero.css';
 
 const Hero = () => {
+  const base = import.meta.env.BASE_URL || '/';
   return (
     <section className="pixel-hero">
       <div className="pixel-grid-bg"></div>
@@ -16,7 +17,7 @@ const Hero = () => {
         <div className="hero-content">
           <div className="pixel-avatar">
             <div className="avatar-frame">
-              <img src="/icons/me.png" alt="me" className="avatar-img" />
+              <img src={`${base}icons/me.png`} alt="me" className="avatar-img" />
             </div>
           </div>
           

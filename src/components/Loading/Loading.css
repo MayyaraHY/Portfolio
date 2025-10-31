@@ -37,7 +37,7 @@
   transform: scale(1.05);
 }
 
-/* Image avatars from /public/icons */
+/* Image avatars from /icons (served from public/) */
 .avatar-container .avatar-img {
   width: 130px;
   height: 130px;
