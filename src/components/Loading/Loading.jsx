@@ -8,7 +8,8 @@ const Loading = ({ onLoadingComplete }) => {
 
   // Use three image avatars from public/icons (public is served at site root, so use /icons/...)
   // Use import.meta.env.BASE_URL so images resolve correctly when the app is served from a sub-path (e.g. GitHub Pages /Portfolio)
-  const base = import.meta.env.BASE_URL || '/';
+  const _rawBase = import.meta.env.BASE_URL || '/';
+  const base = _rawBase.endsWith('/') ? _rawBase : `${_rawBase}/`;
   const avatars = [
     <img src={`${base}icons/yippie.png`} alt="yippie" className="avatar-img" key="yippie" />,
     <img src={`${base}icons/peacesign.png`} alt="peacesign" className="avatar-img" key="peacesign" />,

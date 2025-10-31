@@ -29,7 +29,8 @@ const Projects = () => {
   const [hasOverflow, setHasOverflow] = useState(() => projects.map(() => false));
   const [videoIndex, setVideoIndex] = useState(null);
 
-  const base = import.meta.env.BASE_URL || '/';
+  const _rawBase = import.meta.env.BASE_URL || '/';
+  const base = _rawBase.endsWith('/') ? _rawBase : `${_rawBase}/`;
 
   useEffect(() => {
     // measure each description to see if it overflows 3 lines (clamped)

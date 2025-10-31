@@ -2,7 +2,8 @@ import React from 'react';
 import './Hero.css';
 
 const Hero = () => {
-  const base = import.meta.env.BASE_URL || '/';
+  const _rawBase = import.meta.env.BASE_URL || '/';
+  const base = _rawBase.endsWith('/') ? _rawBase : `${_rawBase}/`;
   return (
     <section className="pixel-hero">
       <div className="pixel-grid-bg"></div>
