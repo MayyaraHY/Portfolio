@@ -24,10 +24,11 @@ const Hero = () => {
           <h1 className="pixel-text">
             <span className="pixel-gradient">Mayyara_Haj_Yahia</span>
           </h1>
-          <h2 className="pixel-subtitle">FULL_STACK_DEV</h2>
+          <h2 className="pixel-subtitle">Software_architecture_engineer & ML</h2>
           <p className="pixel-description">
-            I BUILD PIXEL-PERFECT APPS WITH MODERN TECH STACKS
-          </p>
+            HEYY !! <br></br>
+Final-year software architecture student skilled in software development (Spring Boot, Angular) and ML (python/Flask). 
+Seeking an end-of-studies internship .          </p>
           
           <div className="pixel-buttons">
             <button className="pixel-btn primary">VIEW_PROJECTS</button>
