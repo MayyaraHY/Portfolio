@@ -5,6 +5,7 @@ const Loading = ({ onLoadingComplete }) => {
   const [currentAvatar, setCurrentAvatar] = useState(0);
   const [progress, setProgress] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
+  const [isFading, setIsFading] = useState(false);
 
   // Use three image avatars from public/icons (public is served at site root, so use /icons/...)
   // Use import.meta.env.BASE_URL so images resolve correctly when the app is served from a sub-path (e.g. GitHub Pages /Portfolio)
@@ -28,11 +29,23 @@ const Loading = ({ onLoadingComplete }) => {
         if (prev >= 100) {
           clearInterval(progressInterval);
           clearInterval(avatarInterval);
-          
-          // Loading complete - fade out
+
+          // Loading complete - notify parent so main UI can mount *under* the overlay,
+          // then fade the overlay out and finally hide it. This prevents a brief
+          // white flash caused by the overlay being removed before the main content mounts.
           setTimeout(() => {
-            setIsVisible(false);
-            setTimeout(onLoadingComplete, 500);
+            try {
+              // call parent's handler first so the main app renders beneath the overlay
+              if (typeof onLoadingComplete === 'function') onLoadingComplete();
+            } catch (e) {
+              // ignore handler errors
+            }
+
+            // start fade-out animation, then unmount the overlay after the transition
+            setIsFading(true);
+            setTimeout(() => {
+              setIsVisible(false);
+            }, 500);
           }, 300);
           return 100;
         }
