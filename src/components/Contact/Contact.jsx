@@ -7,6 +7,7 @@ const Contact = () => {
     email: '',
     message: ''
   });
+  const [status, setStatus] = useState({ loading: false, ok: null, msg: '' });
 
   const handleChange = (e) => {
     setFormData({
@@ -17,8 +18,36 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Handle form submission
-    console.log('Form submitted:', formData);
+    // Send form to formsubmit.co which forwards to the target email address
+    // No server-side required. Replace the endpoint email if you want a different recipient.
+    const endpoint = 'https://formsubmit.co/hajyahia.mayyara@gmail.com';
+    setStatus({ loading: true, ok: null, msg: '' });
+
+    const payload = new URLSearchParams();
+    payload.append('name', formData.name);
+    payload.append('email', formData.email);
+    payload.append('message', formData.message);
+    // anti-spam honeypot field
+    payload.append('_honey', '');
+    // disable FormSubmit captcha (optional)
+    payload.append('_captcha', 'false');
+    payload.append('_subject', 'New portfolio message from ' + (formData.name || formData.email));
+
+    fetch(endpoint, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: payload.toString()
+    }).then(res => {
+      if (res.ok) {
+        setStatus({ loading: false, ok: true, msg: 'Message sent — I will reply soon.' });
+        setFormData({ name: '', email: '', message: '' });
+      } else {
+        return res.text().then(text => { throw new Error(text || 'Failed to send'); });
+      }
+    }).catch(err => {
+      console.error('Contact form error', err);
+      setStatus({ loading: false, ok: false, msg: 'Failed to send message. Please try mailto: or try again later.' });
+    });
   };
 
   return (
@@ -32,23 +61,24 @@ const Contact = () => {
               <div className="contact-icon">📧</div>
               <div>
                 <h3>EMAIL</h3>
-                <p>your.email@domain.com</p>
+                <p>hajyahia.mayyara@gmail.com</p>
               </div>
             </div>
             
             <div className="contact-item">
               <div className="contact-icon">💼</div>
               <div>
-                <h3>LINKEDIN</h3>
-                <p>linkedin.com/in/yourprofile</p>
+                
+                  <a href="https://www.linkedin.com/in/mayyara-haj-yahia-5b0199282/" target="_blank" rel="noopener noreferrer"><h3>LINKEDIN</h3></a>
+                  <p>Mayyara Haj yahia</p>
               </div>
             </div>
             
             <div className="contact-item">
               <div className="contact-icon">🐙</div>
               <div>
-                <h3>GITHUB</h3>
-                <p>github.com/yourusername</p>
+                  <a href="https://github.com/MayyaraHY" target="_blank" rel="noopener noreferrer"><h3>GITHUB</h3></a>
+                  <p>MayyaraHY</p>
               </div>
             </div>
           </div>
@@ -94,8 +124,10 @@ const Contact = () => {
             </div>
             
             <button type="submit" className="pixel-btn primary full-width">
-              SEND_MESSAGE
+              {status.loading ? 'SENDING...' : 'SEND_MESSAGE'}
             </button>
+            {status.ok === true && <p className="form-success" role="status">{status.msg}</p>}
+            {status.ok === false && <p className="form-error" role="alert">{status.msg}</p>}
           </form>
         </div>
       </div>
