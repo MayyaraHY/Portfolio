@@ -19,7 +19,6 @@ const Projects = () => {
       description: "This project was developed during my internship to automate and improve the classification of support tickets in an IT service system. The goal is to predict the category of a ticket based on its content, reducing manual workload and improving response efficiency.",
       tech: ["Scikit-learn", "CamemBert", "spaCy", "nltk", "Python", "Flask", "React"],
       color: "blue",
-      demo: 'icons/chat.mp4',
       codeUrl: 'https://github.com/MayyaraHY/glpi_chatbot',
       preview: 'icons/chatbot.png'
     },
@@ -28,18 +27,38 @@ const Projects = () => {
       description: "A system for detecting fraudulent car listings for a second-hand marketplace using machine learning.",
       tech: ["Scikit-learn", "RandomForest", "Hugging Face", "Flask", "Next.js", "DistelBERT"],
       color: "accent",
-      //demo: 'icons/ai_demo.mp4',
       codeUrl: 'https://github.com/ilyeschaabani/Ai_MarketPlace/tree/fraud_detection?tab=readme-ov-file',
-      preview: ''
+      preview: 'icons/fraud2.png',
+      gallery: ['icons/fraud4.png','icons/fraud1.png', 'icons/fraud2.png', 'icons/fraud3.png']
     },
     {
       title: "HR management application",
       description: "A comprehensive HR management application that streamlines employee onboarding, performance tracking, and payroll processing.",
       tech: ["Symfony", "Mysql"],
       color: "purple",
-      demo: 'icons/pi%20video.mp4',
       codeUrl: 'https://github.com/MayyaraHY/Elearning/tree/partnership',
-      preview: ''
+      preview: 'icons/Stage/Screenshot 2024-11-19 161615.png',
+      gallery: [
+        'icons/Stage/Screenshot 2024-11-19 161615.png',
+        'icons/Stage/Screenshot 2024-11-19 161820.png',
+        'icons/Stage/Screenshot 2024-11-19 162015.png',
+        'icons/Stage/Screenshot 2024-11-19 162116.png',
+        'icons/Stage/Screenshot 2024-11-19 162131.png',
+        'icons/Stage/Screenshot 2024-11-19 162143.png',
+        'icons/Stage/Screenshot 2024-11-19 162308.png',
+        'icons/Stage/Screenshot 2024-11-19 162328.png',
+        'icons/Stage/Screenshot 2024-11-19 162344.png',
+        'icons/Stage/Screenshot 2024-11-19 162417.png',
+        'icons/Stage/Screenshot 2024-11-19 162444.png',
+        'icons/Stage/Screenshot 2024-11-19 162523.png',
+        'icons/Stage/Screenshot 2024-11-19 162534.png',
+        'icons/Stage/Screenshot 2024-11-19 162546.png',
+        'icons/Stage/Screenshot 2024-11-19 162624.png',
+        'icons/Stage/Screenshot 2024-11-19 162644.png',
+        'icons/Stage/Screenshot 2024-11-19 162727.png',
+        'icons/Stage/Screenshot 2024-11-19 162852.png',
+        'icons/Stage/Screenshot 2024-11-19 163015.png'
+      ]
     },
 
   ];
@@ -48,6 +67,7 @@ const Projects = () => {
   const descRefs = useRef([]);
   const [hasOverflow, setHasOverflow] = useState(() => projects.map(() => false));
   const [videoIndex, setVideoIndex] = useState(null);
+  const [galleryIndex, setGalleryIndex] = useState(0); // Track current gallery image
   const [currentSlide, setCurrentSlide] = useState(0);
   const [visibleCount, setVisibleCount] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -127,6 +147,11 @@ const Projects = () => {
     return () => window.removeEventListener('keydown', onKey);
   }, [projects.length]);
 
+  // Reset gallery index when expanding a different project
+  useEffect(() => {
+    setGalleryIndex(0);
+  }, [expandedIndex]);
+
   return (
     <section id="projects" className="pixel-projects">
       <div className="container">
@@ -159,7 +184,39 @@ const Projects = () => {
 
               <div className="project-preview">
                 <div className="pixel-art-preview">
-                  {projects[expandedIndex].preview ? (
+                  {projects[expandedIndex].gallery ? (
+                    <div className="gallery-container">
+                      <button 
+                        className="gallery-nav prev" 
+                        onClick={() => setGalleryIndex(prev => prev === 0 ? projects[expandedIndex].gallery.length - 1 : prev - 1)}
+                        aria-label="Previous image"
+                      >
+                        ‹
+                      </button>
+                      <img 
+                        src={`${base}${projects[expandedIndex].gallery[galleryIndex]}`} 
+                        alt={`${projects[expandedIndex].title} gallery ${galleryIndex + 1}`} 
+                        className="project-preview-img" 
+                      />
+                      <button 
+                        className="gallery-nav next" 
+                        onClick={() => setGalleryIndex(prev => prev === projects[expandedIndex].gallery.length - 1 ? 0 : prev + 1)}
+                        aria-label="Next image"
+                      >
+                        ›
+                      </button>
+                      <div className="gallery-indicators">
+                        {projects[expandedIndex].gallery.map((_, i) => (
+                          <button 
+                            key={i} 
+                            className={`gallery-dot ${i === galleryIndex ? 'active' : ''}`}
+                            onClick={() => setGalleryIndex(i)}
+                            aria-label={`Go to image ${i + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </div>
+                  ) : projects[expandedIndex].preview ? (
                     <img src={`${base}${projects[expandedIndex].preview}`} alt={`${projects[expandedIndex].title} preview`} className="project-preview-img" />
                   ) : null}
                 </div>
@@ -296,7 +353,9 @@ const Projects = () => {
                 >
                   VIEW_CODE
                 </button>
-                <button className="pixel-btn small" onClick={() => setVideoIndex(index)}>LIVE_DEMO</button>
+                {project.demo && (
+                  <button className="pixel-btn small" onClick={() => setVideoIndex(index)}>LIVE_DEMO</button>
+                )}
               </div>
                 </div>
               </div>

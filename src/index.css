@@ -21,6 +21,10 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   background: linear-gradient(135deg, var(--pixel-darker) 0%, var(--pixel-dark) 100%);
   color: var(--pixel-light);

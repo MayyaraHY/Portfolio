@@ -6,19 +6,25 @@ const Skills = () => {
     {
       title: "FRONTEND",
       color: "purple",
-      skills: ["React", "TypeScript", "Next.js", "Three.js"],
+      skills: ["React", "Angular", "Vue.js"],
       icon: "💻"
     },
     {
       title: "BACKEND", 
       color: "blue",
-      skills: ["Node.js", "Python", "PostgreSQL", "Redis"],
+      skills: ["Node.js", "Python", "Spring Boot", "Symfony"],
       icon: "⚙️"
+    },
+    {
+      title: "ML & AI",
+      color: "green",
+      skills: ["NLP","HuggingFace", "SpaCy", "Scikit-Learn", "CamemBert", "DistilBERT", "SVC", "RandomForest"],
+      icon: "🤖"
     },
     {
       title: "TOOLS",
       color: "accent",
-      skills: ["Git", "Docker", "AWS", "Figma"],
+      skills: ["Git", "Docker", "Kubernetes", "Jenkins", "Jira", "SonarQube"],
       icon: "🛠️"
     }
   ];

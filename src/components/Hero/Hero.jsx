@@ -31,10 +31,6 @@ const Hero = () => {
 Final-year software architecture student skilled in software development (Spring Boot, Angular) and ML (python/Flask). 
 Seeking an end-of-studies internship .          </p>
           
-          <div className="pixel-buttons">
-            <button className="pixel-btn primary">VIEW_PROJECTS</button>
-            <button className="pixel-btn secondary">DOWNLOAD_CV</button>
-          </div>
         </div>
       </div>
     </section>

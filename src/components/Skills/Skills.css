@@ -6,8 +6,20 @@
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 30px;
+}
+
+@media (max-width: 1200px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 .skill-category {
@@ -24,6 +36,10 @@
 
 .skill-category.blue {
   border-color: var(--pixel-blue);
+}
+
+.skill-category.green {
+  border-color: #10b981;
 }
 
 .skill-category.accent {
@@ -60,6 +76,10 @@
   color: var(--pixel-blue);
 }
 
+.skill-category.green .skill-header h3 {
+  color: #10b981;
+}
+
 .skill-category.accent .skill-header h3 {
   color: var(--pixel-accent);
 }
@@ -87,6 +107,10 @@
 
 .skill-category.blue .pixel-dot {
   background: var(--pixel-blue);
+}
+
+.skill-category.green .pixel-dot {
+  background: #10b981;
 }
 
 .skill-category.accent .pixel-dot {
